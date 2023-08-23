@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import './App.scss'
+import convertToPNG from './ConvertToPNG'
+import ConvertToPNG from './ConvertToPNG'
 
 function App() {
 
@@ -12,13 +14,17 @@ function App() {
   //Use FileReader
 
 
-  const fileDropped = (e:React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target?.files?.[0]
+  const fileDropped = async (e:React.ChangeEvent<HTMLInputElement>) => {
+    var file = e.target?.files?.[0]
     if(file){
 
       if (file.type !== 'image/png') {
         toast.error("Invalid image type, please use .png")
-        return
+        try{
+          file = await ConvertToPNG(file)
+        }catch(error){
+          console.log(error)
+        }
       }
 
       const reader = new FileReader()
