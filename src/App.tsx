@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react'
+import { useRef} from 'react'
 import { toast } from 'react-hot-toast'
 import './App.scss'
-import convertToPNG from './ConvertToPNG'
 import ConvertToPNG from './ConvertToPNG'
 
 function App() {
